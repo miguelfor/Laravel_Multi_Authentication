@@ -61,5 +61,17 @@ class LoginController extends Controller
         //return true;
     }
 
+          /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
+    {
+        auth::guard('admin')->logout(); 
+        return redirect('/');
+    }
+
 
 }
