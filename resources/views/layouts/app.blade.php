@@ -53,15 +53,20 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                                    @if (Auth::user()->name=="Administrator")
+                                    @if (Auth::guard('admin')->check())
+                                        <a href="{{ route('admin.logout') }}">Logout Admin</a>
+                                    @endif 
+                                    @endif
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @if (Auth::user()->name!="Administrator") 
+                                    @if (Auth::guard('web')->check())
+                                        <a href="{{ route('user.logout') }}">Logout</a>
+                                    @endif
+                                    @endif
+                                        <!--form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
-                                        </form>
+                                        </form-->
                                     </li>
                                 </ul>
                             </li>
